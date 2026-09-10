@@ -883,7 +883,7 @@ async function roll() {
         pickUpTo(6, pool);
 
       title =
-        `🌈 Mono ${type}`;
+        `​🔔 Mono ${type}`;
 
       text =
         pool.length < 6
