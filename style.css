@@ -1,0 +1,604 @@
+/* =========================
+   RESET / BASE
+========================= */
+
+:root {
+    --bg-0: #0d0c14;
+    --bg-1: #171225;
+    --bg-2: #221c38;
+    --red: #e63946;
+    --red-dark: #a81f2a;
+    --teal: #4cc9c0;
+    --gold: #f4b942;
+    --ink: #f5f5fa;
+    --muted: #9d9db3;
+    --border: #332b4d;
+    --card-bg: #17132adf;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, Arial, sans-serif;
+    color: var(--ink);
+    background:
+        radial-gradient(circle at 8% -5%, #4a1620 0, transparent 40%),
+        radial-gradient(circle at 100% 0%, #123a3a 0, transparent 45%),
+        radial-gradient(circle at 50% 100%, var(--bg-1) 0, var(--bg-0) 60%);
+    background-color: var(--bg-0);
+}
+
+button,
+select {
+    font: inherit;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible + label {
+    outline: 2px solid var(--teal);
+    outline-offset: 2px;
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app {
+    max-width: 1000px;
+    margin: auto;
+    padding: 28px 18px 50px;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.ball {
+    width: 60px;
+    height: 60px;
+    flex: none;
+
+    filter: drop-shadow(0 10px 18px #0007);
+}
+
+.ball svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.brand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.brand-name {
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.version-badge {
+    font-family: "Press Start 2P", monospace;
+    font-size: 8px;
+    padding: 5px 7px 4px;
+    background: var(--red);
+    color: #fff;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(27px, 5vw, 42px);
+    letter-spacing: -0.01em;
+}
+
+.subtitle {
+    margin: 8px 0 0;
+    max-width: 60ch;
+    color: var(--muted);
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    margin: 14px 0;
+    padding: 22px;
+
+    background: var(--card-bg);
+    border: 1px solid #ffffff12;
+    border-radius: 16px;
+
+    box-shadow: 0 12px 30px #0003;
+}
+
+.card > label,
+.card h2,
+.card > div > label {
+    display: block;
+    margin: 0 0 12px;
+    font-weight: 800;
+}
+
+
+/* =========================
+   SELECT
+========================= */
+
+select {
+    width: 100%;
+    padding: 13px 14px;
+
+    background: #100e1c;
+    border: 1px solid #3d3554;
+    border-radius: 10px;
+
+    color: #fff;
+    outline: none;
+}
+
+
+/* =========================
+   HINT
+========================= */
+
+.hint {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   CHALLENGES
+========================= */
+
+.challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.challenge {
+    min-height: 125px;
+    padding: 17px;
+    text-align: left;
+
+    background: #1c1730;
+    border: 2px solid #332b4d;
+    border-radius: 14px;
+
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+}
+
+.challenge:hover {
+    transform: translateY(-2px);
+    border-color: #564a78;
+}
+
+.challenge b {
+    display: block;
+    margin-bottom: 9px;
+    font-size: 26px;
+}
+
+.challenge span {
+    display: block;
+    font-weight: 800;
+}
+
+.challenge small {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    line-height: 1.35;
+}
+
+/* each mode gets its own accent when active, instead of one repeated color */
+.challenge.active { background: #241d3c; }
+
+.challenge[data-mode="random"].active {
+    border-color: var(--red);
+    box-shadow: 0 0 0 1px var(--red) inset;
+}
+
+.challenge[data-mode="mono"].active {
+    border: 2px solid;
+    border-image: linear-gradient(90deg, #F08030, #F8D030, #78C850, #6890F0, #A040A0) 1;
+}
+
+.challenge[data-mode="selected"].active {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold) inset;
+}
+
+
+/* =========================
+   TYPES (checkbox grid)
+========================= */
+
+.types {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+}
+
+.type-check {
+    --type-color: #888;
+    --type-text: #111;
+}
+
+.type-check input {
+    display: none;
+}
+
+.type-check label {
+    display: block;
+    padding: 9px 4px;
+    text-align: center;
+
+    background: #100e1c;
+    border: 1px solid #332b4d;
+    border-left: 3px solid var(--type-color);
+    border-radius: 8px;
+
+    color: var(--type-color);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.type-check input:checked + label {
+    background: var(--type-color);
+    border-color: var(--type-color);
+    color: var(--type-text);
+}
+
+
+/* =========================
+   ROLL BUTTON
+========================= */
+
+.roll {
+    width: 100%;
+    padding: 17px;
+
+    background: linear-gradient(135deg, var(--red), var(--red-dark));
+    border: 0;
+    border-radius: 14px;
+
+    color: #fff;
+    font-size: 19px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+
+    cursor: pointer;
+    box-shadow: 0 10px 30px #a81f2a55;
+    transition: transform 0.1s;
+}
+
+.roll:active:not(:disabled) {
+    transform: scale(0.98);
+}
+
+.roll:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+
+.shiny-toast {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    z-index: 50;
+
+    padding: 13px 22px;
+    background: linear-gradient(135deg, #ffd76a, var(--gold));
+    border-radius: 14px;
+
+    color: #1a1400;
+    font-weight: 900;
+    font-size: 15px;
+    text-align: center;
+    white-space: nowrap;
+
+    box-shadow: 0 12px 30px #0006, 0 0 30px #f4b94270;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -16px) scale(0.96);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.shiny-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+    animation: shinyToastGlow 1.1s ease-in-out infinite;
+}
+
+@keyframes shinyToastGlow {
+    0%, 100% { box-shadow: 0 12px 30px #0006, 0 0 22px #f4b94260; }
+    50% { box-shadow: 0 12px 30px #0006, 0 0 38px #f4b942a0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .shiny-toast.show { animation: none; }
+}
+
+@media (max-width: 500px) {
+    .shiny-toast {
+        left: 12px;
+        right: 12px;
+        transform: translateY(-16px) scale(0.96);
+        white-space: normal;
+    }
+    .shiny-toast.show { transform: translateY(0) scale(1); }
+}
+
+.header-controls {
+    margin-left: auto;
+    align-self: flex-start;
+    display: flex;
+    gap: 8px;
+}
+
+.icon-toggle {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+
+    background: #1c1730;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.icon-toggle:hover {
+    border-color: var(--teal);
+}
+
+.icon-toggle[aria-pressed="true"] {
+    border-color: var(--gold);
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    margin: 14px 0;
+    padding: 12px 15px;
+
+    background: #241d3c;
+    border-left: 3px solid var(--muted);
+    border-radius: 8px;
+
+    color: #d3d3e2;
+    font-size: 13px;
+}
+
+.status.error {
+    border-left-color: var(--red);
+    color: #ffd7da;
+}
+
+
+/* =========================
+   RESULTADO — tratado como o momento de destaque,
+   não é "mais um card"
+========================= */
+
+#resultCard {
+    background: linear-gradient(160deg, #241a2f, #171225);
+    border: 1px solid #4a3a2a;
+    box-shadow: 0 0 0 1px #f4b94222, 0 16px 40px #0005;
+}
+
+.result-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.result-top h2 {
+    margin-bottom: 4px;
+    color: var(--gold);
+}
+
+.again {
+    padding: 10px 13px;
+
+    background: #2c2440;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+
+    color: #fff;
+    cursor: pointer;
+}
+
+.again:hover {
+    border-color: var(--teal);
+}
+
+
+/* =========================
+   POKÉMON GRID
+========================= */
+
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+    margin-top: 18px;
+}
+
+.pokemon {
+    position: relative;
+    padding: 14px;
+    text-align: center;
+
+    background: linear-gradient(145deg, #292943, #181827);
+    border: 1px solid #3d3d59;
+    border-radius: 15px;
+
+    overflow: hidden;
+    animation: reveal 0.35s ease backwards;
+}
+
+@keyframes reveal {
+    from { opacity: 0; transform: translateY(6px) scale(0.97); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pokemon { animation: none; }
+}
+
+.pokemon img {
+    display: block;
+    width: 145px;
+    height: 145px;
+    margin: auto;
+    object-fit: contain;
+}
+
+.num {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+    color: #66667c;
+    font-size: 11px;
+}
+
+.pokemon.shiny {
+    border: 1px solid var(--gold);
+    background: linear-gradient(145deg, #3a3320, #232013);
+    box-shadow: 0 0 0 1px #f4b94255, 0 0 24px #f4b94240;
+    animation: reveal 0.35s ease backwards, shinyPulse 2.4s ease-in-out 0.4s infinite;
+}
+
+@keyframes shinyPulse {
+    0%, 100% { box-shadow: 0 0 0 1px #f4b94255, 0 0 18px #f4b94230; }
+    50% { box-shadow: 0 0 0 1px #f4b942aa, 0 0 30px #f4b94270; }
+}
+
+.shiny-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    padding: 3px 8px;
+    background: var(--gold);
+    border-radius: 20px;
+
+    color: #1a1a1a;
+    font-size: 10px;
+    font-weight: 900;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pokemon.shiny { animation: none; }
+}
+
+.name {
+    margin: 2px 0 8px;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+
+/* =========================
+   CHIPS (coloridas por tipo via inline style do JS)
+========================= */
+
+.chips {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    padding: 4px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   UTILITÁRIOS
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+.tiny {
+    font-size: 10px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 28px;
+    text-align: center;
+    color: #656579;
+    font-size: 11px;
+}
+
+
+/* =========================
+   RESPONSIVIDADE — ATÉ 700px
+========================= */
+
+@media (max-width: 700px) {
+    .challenge-grid { grid-template-columns: 1fr; }
+    .types { grid-template-columns: repeat(3, 1fr); }
+    .pokemon-grid { grid-template-columns: repeat(2, 1fr); }
+    .result-top { align-items: stretch; flex-direction: column; }
+    .again { width: 100%; }
+}
+
+
+/* =========================
+   RESPONSIVIDADE — ATÉ 430px
+========================= */
+
+@media (max-width: 430px) {
+    .pokemon-grid { grid-template-columns: 1fr; }
+    .types { grid-template-columns: repeat(2, 1fr); }
+    .hero { align-items: flex-start; }
+    .ball { width: 48px; height: 48px; }
+}

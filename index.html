@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéChallenge V2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="shinyToast" class="shiny-toast" role="status" aria-live="polite"></div>
+  <main class="app">
+    <header class="hero">
+      <div class="ball" aria-hidden="true">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="47" fill="#fff" stroke="#1a1a1a" stroke-width="5"/>
+          <path d="M3 50a47 47 0 0 1 94 0z" fill="#e63946"/>
+          <rect x="3" y="47" width="94" height="6" fill="#1a1a1a"/>
+          <circle cx="50" cy="50" r="14" fill="#fff" stroke="#1a1a1a" stroke-width="5"/>
+          <circle cx="50" cy="50" r="6" fill="#fff" stroke="#1a1a1a" stroke-width="4"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-row">
+          <span class="brand-name">PokéChallenge</span>
+          <span class="version-badge">V2</span>
+        </div>
+        <h1>Seu próximo desafio Pokémon</h1>
+        <p class="subtitle">Agora com listas de Pokémon organizadas por jogo e carregadas automaticamente.</p>
+      </div>
+      <div class="header-controls">
+        <button id="musicToggle" class="icon-toggle" title="Tocar música de fundo" aria-pressed="false">🎵</button>
+        <button id="soundToggle" class="icon-toggle" title="Ativar/desativar som" aria-pressed="true">🔊</button>
+      </div>
+    </header>
+
+    <section class="card">
+      <label for="game">🎮 Jogo</label>
+      <select id="game"></select>
+      <p id="gameInfo" class="hint"></p>
+    </section>
+
+    <section class="card">
+      <h2>🎲 Tipo de desafio</h2>
+      <div class="challenge-grid">
+        <button class="challenge active" data-mode="random"><b>🎰</b><span>6 aleatórios</span><small>Um time sorteado dentro da lista do jogo.</small></button>
+        <button class="challenge" data-mode="mono"><b>✨</b><span>Roleta Mono Type</span><small>Sorteia um tipo e monta seu time.</small></button>
+        <button class="challenge" data-mode="selected"><b>🎨</b><span>Tipos selecionáveis</span><small>Você decide quais tipos podem aparecer.</small></button>
+      </div>
+    </section>
+
+    <section class="card" id="optionsCard">
+      <h2>⚙️ Opções</h2>
+      <div id="selectedOptions" class="hidden">
+        <p class="hint">Selecione um ou mais tipos.</p>
+        <div id="types" class="types"></div>
+      </div>
+    </section>
+
+    <button id="roll" class="roll">🎲 GIRAR!</button>
+
+    <section id="status" class="status hidden"></section>
+
+    <section id="resultCard" class="card hidden">
+      <div class="result-top">
+        <div>
+          <h2 id="resultTitle">Seu time</h2>
+          <p id="resultText" class="hint"></p>
+        </div>
+        <button id="again" class="again">🔄 Sortear novamente</button>
+      </div>
+      <div id="result" class="pokemon-grid"></div>
+    </section>
+
+    <footer>
+      <p>Fan project • Os dados e artes pertencem aos respectivos detentores.</p>
+      <p class="tiny">A primeira execução precisa de internet para consultar a Pokédex.</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
