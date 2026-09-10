@@ -104,15 +104,6 @@ Este é um projeto pessoal criado principalmente para diversão, experimentaçã
 
 Novas funcionalidades e melhorias serão adicionadas conforme forem surgindo ideias.
 
-## 📂 Estrutura
-
-A estrutura do projeto ainda está em desenvolvimento e poderá mudar ao longo do tempo.
-
-```text
-pokemon-random-team/
-├── README.md
-└── ...
-```
 
 ---
 
