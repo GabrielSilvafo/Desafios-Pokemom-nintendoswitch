@@ -1,4 +1,3 @@
-```js
 const API = "https://pokeapi.co/api/v2";
 
 /* Listas de exclusivos */
@@ -78,14 +77,14 @@ const GAMES = {
   scarlet: {
     name: "Pokémon Scarlet",
     info: "Paldea + Kitakami + Blueberry/Indigo Disk (DLC). Sem os exclusivos de Violet.",
-    dex: ["paldea", "kitakami", "blueberry-1"],
+    dex: ["paldea", "kitakami", "blueberry"],
     exclude: VIOLET_EXCLUSIVE
   },
 
   violet: {
     name: "Pokémon Violet",
     info: "Paldea + Kitakami + Blueberry/Indigo Disk (DLC). Sem os exclusivos de Scarlet.",
-    dex: ["paldea", "kitakami", "blueberry-1"],
+    dex: ["paldea", "kitakami", "blueberry"],
     exclude: SCARLET_EXCLUSIVE
   },
 
@@ -998,4 +997,3 @@ $("again").onclick = roll;
 gameEl.dispatchEvent(
   new Event("change")
 );
-```
